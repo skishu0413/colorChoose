@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        var finalRed=0;
+        var finalGreen=0;
+        var finalBlue=0;
+        function init()
+        {
+            setRedColor();
+            setGreenColor();
+            setBlueColor();
+        }
+
+        function componentToHex(c) {
+            var hex = c.toString(16);
+            return hex.length == 1 ? "0" + hex : hex;
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + componentToHex(parseInt(finalRed)) + componentToHex(parseInt(finalGreen)) + componentToHex(parseInt(finalBlue));
+        }
+
+        function setRed(value)
+        {
+            finalRed=value.srcElement.getAttribute("data");
+            document.getElementById("redHCV").innerHTML=cRed;
+            document.getElementById("redHCF").style.backgroundColor = "rgb("+cRed+", 0, 0)";  
+            document.getElementById("finalColorC").style.backgroundColor="rgb("+finalRed+", "+finalGreen+", "+finalBlue+")";
+            document.getElementById("finalColorV").innerHTML=rgbToHex();
+        }
+        function setRed1(value)
+        {
+            cRed=value.srcElement.getAttribute("data");
+            document.getElementById("redHV").innerHTML=cRed;
+            document.getElementById("redHC").style.backgroundColor = "rgb("+cRed+", 0, 0)";
+
+        }
+        function removeRed(value)
+        {
+            document.getElementById("redHV").innerHTML="";
+            document.getElementById("redHC").style.backgroundColor = "white";
+        }
+        function setGreen(value)
+        {
+            finalGreen=value.srcElement.getAttribute("data");
+            document.getElementById("greenHCV").innerHTML=finalGreen;
+            document.getElementById("greenHCF").style.backgroundColor = "rgb(0, "+finalGreen+", 0)";  
+            document.getElementById("finalColorC").style.backgroundColor="rgb("+finalRed+", "+finalGreen+", "+finalBlue+")";
+            document.getElementById("finalColorV").innerHTML=rgbToHex();
+        }
+        function setGreen1(value)
+        {
+            cRed=value.srcElement.getAttribute("data");
+            document.getElementById("greenHV").innerHTML=cRed;
+            document.getElementById("greenHC").style.backgroundColor = "rgb(0, "+cRed+", 0)";
+
+        }
+        function removeGreen(value)
+        {
+            document.getElementById("greenHV").innerHTML="";
+            document.getElementById("greenHC").style.backgroundColor = "white";
+        }
+        function setBlue(value)
+        {
+            finalBlue=value.srcElement.getAttribute("data");
+            document.getElementById("blueHCV").innerHTML=finalBlue;
+            document.getElementById("blueHCF").style.backgroundColor = "rgb(0,0, "+finalBlue+")";  
+            document.getElementById("finalColorC").style.backgroundColor="rgb("+finalRed+", "+finalGreen+", "+finalBlue+")";
+            document.getElementById("finalColorV").innerHTML=rgbToHex();
+        }
+        function setBlue1(value)
+        {
+            cRed=value.srcElement.getAttribute("data");
+            document.getElementById("blueHV").innerHTML=cRed;
+            document.getElementById("blueHC").style.backgroundColor = "rgb(0,0, "+cRed+")";
+
+        }
+        function removeBlue(value)
+        {
+            document.getElementById("blueHV").innerHTML="";
+            document.getElementById("blueHC").style.backgroundColor = "white";
+        }
+        function setRedColor()
+        {
+            var red=document.getElementById("red");
+            var head=document.getElementById("heading");
+            for(i=0;i<255;i++)
+            {
+                var td = document.createElement('td');
+                td.rowSpan="2";
+                red.appendChild(td);
+                td.style.backgroundColor = "rgb("+i+", 0, 0)";
+                td.setAttribute('data',i);
+                td.addEventListener("click", setRed);
+                td.addEventListener("mouseover", setRed1);
+                td.addEventListener("mouseout", removeRed);
+                var td1 = document.createElement('td');
+                head.appendChild(td1);
+            }
+            var td = document.createElement('td');
+            var td1 = document.createElement('td');
+            var table=document.createElement('table');
+            var table1=document.createElement('table');
+
+            var tr=document.createElement("tr");
+            var tr1=document.createElement("tr");
+            var tr2=document.createElement("tr");
+            head.appendChild(td);
+            td = document.createElement('td');
+            tr.appendChild(td);
+            tr2.appendChild(td1);
+            td.id="redHC";
+            td.width = "70px";
+            td.rowSpan="1";
+            td.height="15px";
+            td.style.border="3px solid";
+            td.className+="space";
+
+            td.style.borderColor = "rgb("+255+", 0, 0)";
+            td1.width="80px";
+            td1.innerHTML='<font color="blue">c</font><font color="red">o</font><font color="yellow">l</font><font color="gren">o</font><font color="red">r</font> ';
+            td1 = document.createElement('td');
+            tr2.appendChild(td1);
+            td1.innerHTML="dec";
+            table1.appendChild(tr2);
+            head.appendChild(table1);
+
+            td = document.createElement('td');
+            tr.appendChild(td);
+            td.width = "30px";
+            td.rowSpan="1";
+            td.id="redHV";
+
+            td.height="15px";
+            td.style.border="3px solid";
+            td.style.marginLeft="10px";
+            td.className+="space";
+            tr.appendChild(td);
+
+            td.style.borderColor = "rgb("+255+", 0, 0)";
+
+            td = document.createElement('td');
+            td.width = "70px";
+            td.rowSpan="1";
+            td.height="15px";
+            td.id="redHCF";
+            td.className+="space";
+            td.style.border="3px solid";
+            td.style.marginLeft="10px";
+            td.style.borderColor = "rgb("+255+", 0, 0)";
+            tr1.appendChild(td);
+
+            td = document.createElement('td');
+            td.className+="space";
+            td.width = "30px";
+            td.rowSpan="1";
+            td.height="15px";
+            td.id="redHCV";
+            td.style.border="3px solid";
+            td.style.marginLeft="10px";
+            tr1.appendChild(td);
+
+            td.style.borderColor = "rgb("+255+", 0, 0)";
+            table.appendChild(tr);
+            table.appendChild(tr1);
+            red.appendChild(table);
+            td = document.createElement('td');
+            td.width = "30px";
+            td.rowSpan="1";
+            td.height="15px";
+            red.appendChild(td);
+            td = document.createElement('td');
+            td.width = "30px";
+            td.rowSpan="1";
+            td.height="15px";
+            red.appendChild(td);
+            td = document.createElement('td');
+            td.width = "30px";
+            td.rowSpan="1";
+            td.innerHTML='<b><font color="blue">c</font><font color="red">o</font><font color="yellow">l</font><font color="gren">o</font><font color="red">r</font> </b>';
+            td.style.verticalAlign="bottom";
+            td.height="15px";
+            red.appendChild(td);
+            td = document.createElement('td');
+            td.width = "20px";
+            
+            td.rowSpan="1";
+            td.height="15px";
+            red.appendChild(td);
+            
+        
+        }
+
+        function setGreenColor()
+        {
+            var red=document.getElementById("green");
+            for(i=0;i<255;i++)
+            {
+                var td = document.createElement('td');
+                td.rowSpan="1";
+                red.appendChild(td);
+                td.setAttribute('data',i);
+                td.addEventListener("click", setGreen);
+                td.addEventListener("mouseover", setGreen1);
+                td.addEventListener("mouseout", removeGreen);
+                td.style.backgroundColor = "rgb(0, "+i+", 0)";
+            }
+            var td = document.createElement('td');
+            var td1 = document.createElement('td');
+            var table=document.createElement('table');
+
+            var tr=document.createElement("tr");
+            var tr1=document.createElement("tr");
+            var tr2=document.createElement("tr");
+            td = document.createElement('td');
+            tr.appendChild(td);
+            tr2.appendChild(td1);
+            td.id="greenHC";
+
+            td.width = "70px";
+            td.rowSpan="1";
+            td.height="15px";
+            td.style.border="3px solid";
+            td.className+="space";
+
+            td.style.borderColor = "rgb(0, 255, 0)";
+
+            td = document.createElement('td');
+            tr.appendChild(td);
+            td.width = "30px";
+            td.rowSpan="1";
+            td.height="15px";
+            td.style.border="3px solid";
+            td.style.marginLeft="10px";
+            td.className+="space";
+            tr.appendChild(td);
+            td.id="greenHV";
+
+
+            td.style.borderColor = "rgb(0, 255, 0)";
+
+            td = document.createElement('td');
+            td.width = "70px";
+            td.rowSpan="1";
+            td.height="15px";
+            td.className+="space";
+            td.id="greenHCF";
+
+            td.style.border="3px solid";
+            td.style.marginLeft="10px";
+            td.style.borderColor = "rgb(0, 255, 0)";
+            tr1.appendChild(td);
+
+            td = document.createElement('td');
+            td.className+="space";
+            td.width = "30px";
+            td.rowSpan="1";
+            td.height="15px";
+            td.id="greenHCV";
+
+            td.style.border="3px solid";
+            td.style.marginLeft="10px";
+            tr1.appendChild(td);
+
+            td.style.borderColor = "rgb(0, 255, 0)";
+            table.appendChild(tr);
+            table.appendChild(tr1);
+            red.appendChild(table);
+            td = document.createElement('td');
+            td.width = "10px";
+            td.rowSpan="2";
+            td.height="15px";
+            td.innerHTML="}";
+            td.style.fontSize = "70px"; 
+            red.appendChild(td);
+
+
+            td = document.createElement('td');
+            var res=document.createElement('table');
+            tr=document.createElement('tr');
+            td1 = document.createElement('td');
+            td1.style.border="3px solid";
+            td1.height="15px";
+            td1.id="finalColorC";
+            td1.width="40px";
+            tr.appendChild(td1);
+            res.appendChild(tr);
+            tr=document.createElement('tr');
+            td1 = document.createElement('td');
+            td1.style.border="3px solid";
+            td1.height="15px";
+            td1.width="80px";
+            td1.id="finalColorV";
+
+            tr.appendChild(td1);
+            res.appendChild(tr);
+            td.appendChild(res);
+            green.appendChild(td);
+        }
+
+        
+        function setBlueColor()
+        {
+            var red=document.getElementById("blue");
+            for(i=0;i<255;i++)
+            {
+                var td = document.createElement('td');
+                td.rowSpan="2";
+                red.appendChild(td);
+                td.setAttribute('data',i);
+                td.addEventListener("click", setBlue);
+                td.addEventListener("mouseover", setBlue1);
+                td.addEventListener("mouseout", removeBlue);
+                td.style.backgroundColor = "rgb(0, 0, "+i+")"
+            }
+            var td = document.createElement('td');
+            var td1 = document.createElement('td');
+            var table=document.createElement('table');
+
+            var tr=document.createElement("tr");
+            var tr1=document.createElement("tr");
+            var tr2=document.createElement("tr");
+            td = document.createElement('td');
+            tr.appendChild(td);
+            tr2.appendChild(td1);
+
+            td.width = "70px";
+            td.rowSpan="1";
+            td.height="15px";
+            td.style.border="3px solid";
+            td.className+="space";
+            td.id="blueHC";
+
+            td.style.borderColor = "rgb(0, 0, 255)";
+
+            td = document.createElement('td');
+            tr.appendChild(td);
+            td.width = "30px";
+            td.rowSpan="1";
+            td.height="15px";
+            td.style.border="3px solid";
+            td.style.marginLeft="10px";
+            td.className+="space";
+            td.id="blueHV";
+            tr.appendChild(td);
+
+            td.style.borderColor = "rgb(0, 0, 255)";
+
+            td = document.createElement('td');
+            td.width = "70px";
+            td.rowSpan="1";
+            td.height="15px";
+
+            td.className+="space";
+            td.style.border="3px solid";
+            td.style.marginLeft="10px";
+            td.id="blueHCF";
+
+            td.style.borderColor = "rgb(0, 0, 255)";
+            tr1.appendChild(td);
+
+            td = document.createElement('td');
+            td.className+="space";
+            td.id="blueHCV";
+
+            td.width = "30px";
+            td.rowSpan="1";
+            td.height="15px";
+            td.style.border="3px solid";
+            td.style.marginLeft="10px";
+            tr1.appendChild(td);
+
+            td.style.borderColor = "rgb(0, 0, 255)";
+            table.appendChild(tr);
+            table.appendChild(tr1);
+            red.appendChild(table);
+            td = document.createElement('td');
+            td.width = "30px";
+            td.rowSpan="1";
+            td.height="15px";
+            red.appendChild(td);
+            td = document.createElement('td');
+            td.width = "30px";
+            td.rowSpan="1";
+            td.height="15px";
+            red.appendChild(td);
+            td = document.createElement('td');
+            td.width = "30px";
+            td.rowSpan="1";
+            td.innerHTML='<b>&nbsp;&nbsp;&nbsp;&nbsp;#</b>';
+            td.style.verticalAlign="top";
+            td.height="15px";
+            red.appendChild(td);
+            td = document.createElement('td');
+            td.width = "20px";
+            
+            td.rowSpan="1";
+            td.height="15px";
+            red.appendChild(td);
+            
+        
+        }
+    </script>
+<style>
+    td{
+        height: 30px;
+    }
+    .space
+    {
+        border-collapse:separate; 
+        border-spacing:2px; 
+    }
+</style>
+</head>
+<body onload="init()">
+
+<table style="width: 80%" CELLSPACING=0>
+    <h3 align="center">
+        <font color="blue">C</font><font color="red">O</font><font color="yellow">L</font><font color="gren">O</font><font color="red">R</font> Chooser</h3>
+  </tr>
+  <tr id="heading">
+        
+
+  </tr>
+  <tr id="red">
+    <td style="color:red" rowSpan="1"><b>R</b></td>
+  </tr>
+</table>
+
+<table style="width: 84.3%;margin-top:10px;display: inline-table;" CELLSPACING=0>
+            
+    
+      </tr>
+      <tr id="green">
+        <td style="color:green" rowSpan="1"><b>G</b></td>
+      </tr>
+    </table>
+
+    <table style="width: 80%;margin-top:10px;" CELLSPACING=0>
+            
+    
+        </tr>
+        <tr id="blue">
+          <td style="color:blue" rowSpan="1"><b>B</b></td>
+        </tr>
+      </table>
+
+
+</body>
+</html>
